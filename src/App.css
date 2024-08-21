@@ -1,6 +1,10 @@
 .App {
   text-align: center;
+  padding: 20px;
+  background-color: #f4f4f4;
 }
+
+
 
 .App-logo {
   height: 40vmin;
@@ -12,6 +16,23 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
+.card {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+  margin: 10px;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.search-bar {
+  margin-bottom: 20px;
+}
+
+.add-widget-btn {
+  margin: 20px 0;
+}
+
+
 
 .App-header {
   background-color: #282c34;
