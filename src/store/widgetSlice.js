@@ -17,7 +17,6 @@ const saveState = (state) => {
     const serializedState = JSON.stringify(state);
     localStorage.setItem('widgetState', serializedState);
   } catch (err) {
-    // Ignore write errors
   }
 };
 
