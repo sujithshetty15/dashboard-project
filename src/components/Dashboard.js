@@ -45,15 +45,15 @@ const Dashboard = () => {
     <div style={{ padding: '20px' }}>
       <div className="header">
         <h1>Dashboard</h1>
-        <div className="buttons">
-          <Button
+        <div  className="buttons">
+          <Button style={{marginBottom:'20px'}}
             variant="contained"
             color="primary"
             onClick={() => setOpenCategoryDialog(true)}
           >
             + Add Category
           </Button>
-          <Button
+          <Button style={{marginLeft:'30px',marginBottom:'20px'}}
             variant="contained"
             color="secondary"
             onClick={() => setOpenWidgetDialog(true)}

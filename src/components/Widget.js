@@ -22,7 +22,7 @@ const Widget = ({ widget, categoryId }) => {
           <Typography variant="body2">{widget.content}</Typography>
         )}
         <Tooltip title="Remove Widget">
-          <IconButton aria-label="delete" onClick={handleDelete} style={{ position: 'absolute', top: '10px', right: '10px' }}>
+          <IconButton label="delete" onClick={handleDelete} style={{ position: 'absolute', top: '10px', right: '10px' }}>
             <DeleteIcon />
           </IconButton>
         </Tooltip>
