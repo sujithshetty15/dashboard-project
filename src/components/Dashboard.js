@@ -44,129 +44,130 @@ const Dashboard = () => {
 
   return (
     <div style={{ padding: '20px'}}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-        <h1 style={{ textAlign: 'center', flexGrow: 1 }}>Dashboard</h1>
-        <TextField
-          label="Search Widgets"
-          variant="outlined"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          style={{ marginLeft: '20px', marginRight: '20px', width: '300px' }}
-        />
-      </div>
+  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '20px' }}>
+    <h1 style={{ textAlign: 'center', marginRight: '20px' }}>Dashboard</h1>
+    <TextField
+      label="Search Widgets"
+      variant="outlined"
+      value={searchQuery}
+      onChange={(e) => setSearchQuery(e.target.value)}
+      style={{ width: '250px', height: '50px' }}
+    />
+  </div>
 
-      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
-        <Button
-          variant="contained"
-          color="primary"
-          style={{ marginRight: '10px' }}
-          onClick={() => setOpenCategoryDialog(true)}
-        >
-          + Add Category
-        </Button>
+  <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+    <Button
+      variant="contained"
+      color="primary"
+      style={{ marginRight: '10px' }}
+      onClick={() => setOpenCategoryDialog(true)}
+    >
+      + Add Category
+    </Button>
 
-        <Button
-          variant="contained"
-          color="secondary"
-          onClick={() => setOpenWidgetDialog(true)}
-        >
-          + Add Widget
-        </Button>
-      </div>
+    <Button
+      variant="contained"
+      color="secondary"
+      onClick={() => setOpenWidgetDialog(true)}
+    >
+      + Add Widget
+    </Button>
+  </div>
 
-      <Grid container spacing={3}>
-        {categories.map((category) => {
-          const filteredWidgets = category.widgets.filter(widget =>
-            widget.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            widget.content.toLowerCase().includes(searchQuery.toLowerCase())
-          );
+  <Grid container spacing={3}>
+    {categories.map((category) => {
+      const filteredWidgets = category.widgets.filter(widget =>
+        widget.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        widget.content.toLowerCase().includes(searchQuery.toLowerCase())
+      );
 
-          if (filteredWidgets.length === 0) return null;
+      if (filteredWidgets.length === 0) return null;
 
-          return (
-            <Grid item xs={12} key={category.id}>
-              <Typography variant="h6" style={{ marginBottom: '10px' }}>{category.name}</Typography>
-              <Category category={{ ...category, widgets: filteredWidgets }} />
-            </Grid>
-          );
-        })}
-      </Grid>
+      return (
+        <Grid item xs={12} key={category.id}>
+          <Typography variant="h6" style={{ marginBottom: '10px' }}>{category.name}</Typography>
+          <Category category={{ ...category, widgets: filteredWidgets }} />
+        </Grid>
+      );
+    })}
+  </Grid>
 
-      {/* Add Category Dialog */}
-      <Dialog open={openCategoryDialog} onClose={() => setOpenCategoryDialog(false)}>
-        <DialogTitle>Add New Category</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            label="Category Name"
-            type="text"
-            fullWidth
-            value={newCategoryName}
-            onChange={(e) => setNewCategoryName(e.target.value)}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setOpenCategoryDialog(false)} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleAddCategory} color="primary">
-            Add
-          </Button>
-        </DialogActions>
-      </Dialog>
+  {/* Add Category Dialog */}
+  <Dialog open={openCategoryDialog} onClose={() => setOpenCategoryDialog(false)}>
+    <DialogTitle>Add New Category</DialogTitle>
+    <DialogContent>
+      <TextField
+        autoFocus
+        margin="dense"
+        label="Category Name"
+        type="text"
+        fullWidth
+        value={newCategoryName}
+        onChange={(e) => setNewCategoryName(e.target.value)}
+      />
+    </DialogContent>
+    <DialogActions>
+      <Button onClick={() => setOpenCategoryDialog(false)} color="primary">
+        Cancel
+      </Button>
+      <Button onClick={handleAddCategory} color="primary">
+        Add
+      </Button>
+    </DialogActions>
+  </Dialog>
 
-      {/* Add Widget Dialog */}
-      <Dialog open={openWidgetDialog} onClose={() => setOpenWidgetDialog(false)}>
-        <DialogTitle>Add New Widget</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            label="Widget Name"
-            type="text"
-            fullWidth
-            value={widgetName}
-            onChange={(e) => setWidgetName(e.target.value)}
-          />
-          <TextField
-            margin="dense"
-            label="Widget Content"
-            type="text"
-            fullWidth
-            value={widgetContent}
-            onChange={(e) => setWidgetContent(e.target.value)}
-          />
-          <TextField
-            select
-            margin="dense"
-            label="Select Category"
-            fullWidth
-            SelectProps={{
-              native: true,
-            }}
-            onChange={(e) => setSelectedCategoryId(e.target.value)}
-          >
-            <option value="" disabled>
-              Select Category
-            </option>
-            {categories.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            ))}
-          </TextField>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setOpenWidgetDialog(false)} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleAddWidget} color="primary">
-            Add
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
+  {/* Add Widget Dialog */}
+  <Dialog open={openWidgetDialog} onClose={() => setOpenWidgetDialog(false)}>
+    <DialogTitle>Add New Widget</DialogTitle>
+    <DialogContent>
+      <TextField
+        autoFocus
+        margin="dense"
+        label="Widget Name"
+        type="text"
+        fullWidth
+        value={widgetName}
+        onChange={(e) => setWidgetName(e.target.value)}
+      />
+      <TextField
+        margin="dense"
+        label="Widget Content"
+        type="text"
+        fullWidth
+        value={widgetContent}
+        onChange={(e) => setWidgetContent(e.target.value)}
+      />
+      <TextField
+        select
+        margin="dense"
+        label="Select Category"
+        fullWidth
+        SelectProps={{
+          native: true,
+        }}
+        onChange={(e) => setSelectedCategoryId(e.target.value)}
+      >
+        <option value="" disabled>
+          Select Category
+        </option>
+        {categories.map((category) => (
+          <option key={category.id} value={category.id}>
+            {category.name}
+          </option>
+        ))}
+      </TextField>
+    </DialogContent>
+    <DialogActions>
+      <Button onClick={() => setOpenWidgetDialog(false)} color="primary">
+        Cancel
+      </Button>
+      <Button onClick={handleAddWidget} color="primary">
+        Add
+      </Button>
+    </DialogActions>
+  </Dialog>
+</div>
+
   );
 };
 
