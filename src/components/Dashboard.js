@@ -19,7 +19,7 @@ const Dashboard = () => {
 
   const handleAddCategory = () => {
     const newCategory = {
-      id: uuidv4(), // Ensure a unique ID for the new category
+      id: uuidv4(), 
       name: newCategoryName,
       widgets: [],
     };
@@ -92,7 +92,7 @@ const Dashboard = () => {
         })}
       </Grid>
 
-      {/* Add Category Dialog */}
+      {/*  Category  */}
       <Dialog open={openCategoryDialog} onClose={() => setOpenCategoryDialog(false)}>
         <DialogTitle>Add New Category</DialogTitle>
         <DialogContent>
@@ -116,7 +116,7 @@ const Dashboard = () => {
         </DialogActions>
       </Dialog>
 
-      {/* Add Widget Dialog */}
+      {/*  Widget  */}
       <Dialog open={openWidgetDialog} onClose={() => setOpenWidgetDialog(false)}>
         <DialogTitle>Add New Widget</DialogTitle>
         <DialogContent>

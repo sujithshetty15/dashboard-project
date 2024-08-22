@@ -72,7 +72,7 @@ const widgetSlice = createSlice({
       const category = state.categories.find((cat) => cat.id === categoryId);
       if (category) {
         category.widgets = category.widgets.filter((widget) => widget.id !== widgetId);
-        saveState(state); // Save state to localStorage after removing a widget
+        saveState(state); 
       }
     },
   },
