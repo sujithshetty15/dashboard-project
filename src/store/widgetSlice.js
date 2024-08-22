@@ -8,6 +8,7 @@ const loadState = () => {
     }
     return JSON.parse(serializedState);
   } catch (err) {
+    console.error("Failed to load state from localStorage:", err);
     return undefined;
   }
 };
@@ -17,8 +18,10 @@ const saveState = (state) => {
     const serializedState = JSON.stringify(state);
     localStorage.setItem('widgetState', serializedState);
   } catch (err) {
+    console.error("Failed to save state to localStorage:", err);
   }
 };
+
 
 const initialState = loadState() || {
   categories: [
@@ -41,6 +44,7 @@ const initialState = loadState() || {
   ],
 };
 
+
 const widgetSlice = createSlice({
   name: 'widgets',
   initialState,
@@ -48,19 +52,19 @@ const widgetSlice = createSlice({
     addCategory(state, action) {
       const { category } = action.payload;
       state.categories.push(category);
-      saveState(state);
+      saveState(state); // Save state to localStorage after adding a category
     },
     removeCategory(state, action) {
       const { categoryId } = action.payload;
       state.categories = state.categories.filter((cat) => cat.id !== categoryId);
-      saveState(state);
+      saveState(state); // Save state to localStorage after removing a category
     },
     addWidget(state, action) {
       const { categoryId, widget } = action.payload;
       const category = state.categories.find((cat) => cat.id === categoryId);
       if (category) {
         category.widgets.push(widget);
-        saveState(state);
+        saveState(state); // Save state to localStorage after adding a widget
       }
     },
     removeWidget(state, action) {
@@ -68,7 +72,7 @@ const widgetSlice = createSlice({
       const category = state.categories.find((cat) => cat.id === categoryId);
       if (category) {
         category.widgets = category.widgets.filter((widget) => widget.id !== widgetId);
-        saveState(state);
+        saveState(state); // Save state to localStorage after removing a widget
       }
     },
   },
