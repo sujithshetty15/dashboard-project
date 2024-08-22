@@ -29,7 +29,7 @@ const initialState = loadState() || {
       id: 1,
       name: 'CSPM Executive Dashboard',
       widgets: [
-        { id: 1, title: 'Cloud Accounts', content: '2 Total' },
+        { id: 1, title: 'Cloud Account', content: '2 Total' },
         { id: 2, title: 'Cloud Account Risk Assessment', content: '9659 Total' },
       ],
     },

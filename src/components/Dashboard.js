@@ -62,7 +62,7 @@ const Dashboard = () => {
           style={{ marginRight: '10px' }}
           onClick={() => setOpenCategoryDialog(true)}
         >
-          + Add Category
+          + Add New Category
         </Button>
 
         <Button
@@ -70,7 +70,7 @@ const Dashboard = () => {
           color="secondary"
           onClick={() => setOpenWidgetDialog(true)}
         >
-          + Add Widget
+          + Add New Widget
         </Button>
       </div>
 
