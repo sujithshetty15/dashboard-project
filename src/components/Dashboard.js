@@ -42,25 +42,26 @@ const Dashboard = () => {
   };
 
   return (
-    <div style={{ padding: '20px'}}>
-    <h1 style={{marginLeft:'650px'}}>Dashboard</h1>
-      <Button
-        variant="contained"
-        color="primary"
-        style={{ marginBottom: '20px',marginLeft:'550px',textAlign:'center' }}
-        onClick={() => setOpenCategoryDialog(true)}
-      >
-        + Add Category
-      </Button>
-
-      <Button
-        variant="contained"
-        color="secondary"
-        style={{ marginLeft:'750px',marginTop:'-101px' }}
-        onClick={() => setOpenWidgetDialog(true)}
-      >
-        + Add Widget
-      </Button>
+    <div style={{ padding: '20px' }}>
+      <div className="header">
+        <h1>Dashboard</h1>
+        <div className="buttons">
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => setOpenCategoryDialog(true)}
+          >
+            + Add Category
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => setOpenWidgetDialog(true)}
+          >
+            + Add Widget
+          </Button>
+        </div>
+      </div>
 
       <Grid container spacing={3}>
         {categories.map((category) => (
