@@ -32,7 +32,7 @@ button {
 @media (max-width: 768px) {
   h1 {
     font-size: 2rem; 
-    margin-left: 500px;/* Adjust font size for smaller screens */
+    margin-left: 500px;
   }
 
   .buttons {
