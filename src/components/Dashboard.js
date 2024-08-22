@@ -15,6 +15,7 @@ const Dashboard = () => {
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
   const [widgetName, setWidgetName] = useState('');
   const [widgetContent, setWidgetContent] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleAddCategory = () => {
     const newCategory = {
@@ -42,34 +43,53 @@ const Dashboard = () => {
   };
 
   return (
-    <div style={{ padding: '20px' }}>
-      <div className="header">
-        <h1>Dashboard</h1>
-        <div  className="buttons">
-          <Button style={{marginBottom:'20px'}}
-            variant="contained"
-            color="primary"
-            onClick={() => setOpenCategoryDialog(true)}
-          >
-            + Add Category
-          </Button>
-          <Button style={{marginLeft:'30px',marginBottom:'20px'}}
-            variant="contained"
-            color="secondary"
-            onClick={() => setOpenWidgetDialog(true)}
-          >
-            + Add Widget
-          </Button>
-        </div>
+    <div style={{ padding: '20px'}}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+        <h1 style={{ textAlign: 'center', flexGrow: 1 }}>Dashboard</h1>
+        <TextField
+          label="Search Widgets"
+          variant="outlined"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          style={{ marginLeft: '20px', marginRight: '20px', width: '300px' }}
+        />
+      </div>
+
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+        <Button
+          variant="contained"
+          color="primary"
+          style={{ marginRight: '10px' }}
+          onClick={() => setOpenCategoryDialog(true)}
+        >
+          + Add Category
+        </Button>
+
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={() => setOpenWidgetDialog(true)}
+        >
+          + Add Widget
+        </Button>
       </div>
 
       <Grid container spacing={3}>
-        {categories.map((category) => (
-          <Grid item xs={12} key={category.id}>
-            <Typography variant="h6" style={{ marginBottom: '10px' }}>{category.name}</Typography>
-            <Category category={category} />
-          </Grid>
-        ))}
+        {categories.map((category) => {
+          const filteredWidgets = category.widgets.filter(widget =>
+            widget.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            widget.content.toLowerCase().includes(searchQuery.toLowerCase())
+          );
+
+          if (filteredWidgets.length === 0) return null;
+
+          return (
+            <Grid item xs={12} key={category.id}>
+              <Typography variant="h6" style={{ marginBottom: '10px' }}>{category.name}</Typography>
+              <Category category={{ ...category, widgets: filteredWidgets }} />
+            </Grid>
+          );
+        })}
       </Grid>
 
       {/* Add Category Dialog */}
